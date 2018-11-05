@@ -87,9 +87,9 @@
     "test/"
   ],
   "dependencies": {
-    "video.js": "^5.10.2"
   },
   "devDependencies": {
+    "video.js": "^6.7.3",
     "babel": "^5.8.35",
     "babelify": "^6.4.0",
     "bannerize": "^1.0.2",
