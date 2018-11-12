@@ -123,7 +123,6 @@ class Dvrseekbar extends Plugin {
       return;
     }
 
-
     if (time.end(0) - this.player.currentTime() < 30) {
       btnLiveEl.className = 'vjs-live-label onair';
     } else {
@@ -143,9 +142,6 @@ class Dvrseekbar extends Plugin {
     Array.from(document.getElementsByClassName('vjs-live-button'))
     .forEach(element => element.remove());
 
-    //vjs-dvrseekbar-progress-control  vjs-progress-control vjs-control vjs-dvrseekbar-progress-control
-
-    //vjs-live-button vjs-control
     this.player.off('timeupdate');
     super.dispose();
     videojs.log('the advanced plugin is being disposed');
