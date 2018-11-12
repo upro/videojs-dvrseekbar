@@ -117,10 +117,6 @@ var Dvrseekbar = function (_Plugin) {
 
       btnLiveEl.className = 'vjs-live-label';
     });
-
-    // this.player.ready(() => {
-    //   onPlayerReady(this, videojs.mergeOptions(this.defaults, this.options));
-    // });
   };
 
   Dvrseekbar.prototype.setSeekBar = function setSeekBar() {
@@ -165,14 +161,7 @@ var Dvrseekbar = function (_Plugin) {
       return;
     }
 
-    /*let time1 = time && time.length ? time.end(0) - time.start(0) : 0;
-       if(time1 > 0) {
-      player.duration(time1 + 2);
-    }
-    */
-
     if (time.end(0) - this.player.currentTime() < 30) {
-
       btnLiveEl.className = 'vjs-live-label onair';
     } else {
       btnLiveEl.className = 'vjs-live-label';
@@ -192,10 +181,16 @@ var Dvrseekbar = function (_Plugin) {
       return element.remove();
     });
 
-    //vjs-dvrseekbar-progress-control  vjs-progress-control vjs-control vjs-dvrseekbar-progress-control
-
-    //vjs-live-button vjs-control
+    if (this.newLink.addEventListener) {
+      // DOM method
+      this.newLink.removeEventListener('click', function () {});
+    } else if (this.newLink.attachEvent) {
+      // this is for IE, because it doesn't support addEventListener
+      this.newLink.detachEvent('onclick');
+    }
     this.player.off('timeupdate');
+    this.player.off('play');
+    this.player.off('pause');
     _Plugin.prototype.dispose.call(this);
     videojs.log('the advanced plugin is being disposed');
   };

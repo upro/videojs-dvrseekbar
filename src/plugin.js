@@ -142,7 +142,14 @@ class Dvrseekbar extends Plugin {
     Array.from(document.getElementsByClassName('vjs-live-button'))
     .forEach(element => element.remove());
 
+    if (this.newLink.addEventListener) { // DOM method
+      this.newLink.removeEventListener('click', () => {});
+    } else if (this.newLink.attachEvent) { // this is for IE, because it doesn't support addEventListener
+      this.newLink.detachEvent('onclick');
+    }
     this.player.off('timeupdate');
+    this.player.off('play');
+    this.player.off('pause');
     super.dispose();
     videojs.log('the advanced plugin is being disposed');
   }
